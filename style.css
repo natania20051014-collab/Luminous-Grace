@@ -1,0 +1,895 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family:"Arial";
+	font-family:"Hiragino Kaku Gothic ProN";
+	font-weight:normal;
+}
+
+.no-scroll {
+    overflow: hidden; /* メニューが開いているときに背景をスクロールさせない */
+}
+.menu-toggle {
+    /* 既存のヘッダー内の要素のスタイルと競合しないように調整 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* paddingを削除して画像サイズでクリックできるようにする */
+}
+.search-toggle{
+    /* 既存のヘッダー内の要素のスタイルと競合しないように調整 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* paddingを削除して画像サイズでクリックできるようにする */
+}
+.global-nav {
+	
+    position: fixed !important; /* ★ !important で上書きを強制 ★ */
+    top: 0 !important;          /* ★ !important で上端を強制 ★ */
+    left: 0;   
+    right: 0;  
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #fff;
+    z-index: 9999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.global-nav.is-open {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start;
+    position: fixed !important; /* ★ !important で上書きを強制 ★ */
+    top: 0 !important;          /* ★ !important で上端を強制 ★ */
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 9999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. メニューが開いたとき（.is-open）、メニューリンクを表示し、縦並びにする */
+.global-nav.is-open .header__menu__links {
+    display: flex;
+    flex-direction: column; 
+    
+    /* 配置を絶対配置にして、ヘッダーの下から展開 */
+    position: absolute; 
+    top: 50px; /* ヘッダーの高さ分、下から開始 (ヘッダーの高さにより調整) */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 50px); /* 画面の高さからヘッダー高さを引く */
+    justify-content: center; 
+    align-items: center;
+    gap: 30px; 
+    
+    /* 白背景をここで設定 */
+    background-color: rgba(255, 255, 255, 0.95); 
+    z-index: 9998; /* ヘッダーアイコンより下に配置 */
+}
+
+
+/* ------------------------------------------------ */
+/* ★ 検索　レイアウト ★ */
+/* ------------------------------------------------ */
+
+/* フォームの枠全体（角丸を適用） */
+.search-form {
+    display: flex;
+    border: 1px solid #333;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 5px; /* ★ 修正: 角を丸くする ★ */
+}
+
+/* 入力フィールドの修正（高さを狭くする） */
+.search-input {
+    flex-grow: 1;
+    border: none;
+    /* ★ 修正: paddingを狭くして高さを調整する（例: 10pxから7pxに） ★ */
+    padding: 7px; 
+    font-size: 16px;
+    outline: none;
+    background: none;
+}
+
+/* ★ 修正: Chrome/Safariのデフォルトの「検索×ボタン」を非表示にする ★ */
+.search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+
+.header__nav__left{
+	list-style: none;
+}
+.header__nav__right{
+	list-style: none;
+}
+
+.search-suggestions ul li a {
+    color: #000000; /* 黒色 */
+    text-decoration: none; /* 下線を非表示にしたい場合 */
+	list-style: none !important;
+    /* text-decoration: underline; /* 下線を表示したい場合 */
+}
+
+/* 検索履歴のリンクの色が、既存の .search-suggestions li a の設定により青くなっている可能性があるため、その設定を上書きします */
+.search-suggestions li a {
+    color: #000000; /* 黒色 */
+}
+
+/* リンクの上にマウスを置いたとき（ホバー時）の色も黒または濃いグレーに設定すると自然です */
+.search-suggestions li a:hover {
+    color: #555555; /* 濃いグレーなど */
+}
+
+
+a{
+	display:inline-block;
+	text-decoration: none;
+}
+p{
+	font-feature-settings: "palt";
+}
+h1{
+	font-family:"Hiragino Kaku Gothic ProN";
+	margin-top: 30px;
+	margin-bottom: 20px;
+	font-size: 24px;
+	text-align: center;
+	font-weight: 600;
+	color: black;
+}
+h4{
+	font-size: 18px;
+	border-bottom: 1.3px solid black;
+	margin-bottom: 10px;
+	color: black;
+}
+
+
+body{
+	
+	/*背景*/
+	background-image: url("images/haikei.webp");
+	background-repeat: repeat-y;
+	background-size: 100% auto;
+}
+body .page-rule{
+	color: gray;
+}
+main {
+    padding-top: 50px;
+}
+section{
+	margin: 0 20px;
+	margin-top:80px;
+}
+
+/*@media (max-width: 600px){*/
+.page-header {
+    /* ここをfixedに変更 */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    z-index: 9999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ヘッダーの高さ分、上部に余白を追加 */
+.logo {
+	display: block;
+	height: 14px;
+    }
+
+.header__nav__right {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+   
+.header__nav__left {
+	    display: flex;
+		align-items: center;
+	    gap: 24px;
+}
+.header__nav__left, 
+.header__nav__right,
+.header__logo {
+    position: relative; /* z-indexを有効にする */
+    z-index: 10000;    /* 白いオーバーレイ(9999)より高くする */
+}
+
+
+    .nav__img {
+	    display: block;
+    	height: 14px;
+		
+    }
+	
+	.menyu{
+		height: 12px;
+	}
+	
+	.top{
+		width: 100vw;
+		height: 100vh;
+	}
+	
+	.top img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+		
+	.heading__ja{
+		font-family:"Hiragino Kaku Gothic ProN";
+		font-size: 24px;
+		letter-spacing: .1rem;
+		color: #e8a6c2;
+	}
+	
+	.heading__en{
+		font-family:"Arial";
+		font-size: 16px;
+		letter-spacing: .04rem;
+		color: black;
+	}
+	
+	.heading{
+		text-align: center;
+		margin-bottom:20px;
+	}
+	
+/*新着情報*/
+	.joho__item{
+		text-align: center;
+		margin-bottom: 60px;
+	}
+	
+	.joho__image{
+		margin:0 auto;
+		width: 100%;
+		height:335px;
+	}
+	
+	.joho__image img{
+		width:100%;
+		height:100%;
+		object-fit:cover;
+	}
+	
+	.joho__title{
+		margin-top:20px;
+		font-size:20px;
+	}
+	
+	.joho__text{
+		margin-top:20px;
+		text-align:left;
+	}
+	
+	.btn{
+		margin-top: 20px;
+		font-size:16px;
+		background-color: #fff;
+		border:solid 1px black;
+		border-radius: 50px;
+		padding: 1px 1.25rem;
+		color:black;
+		
+	}
+
+/*ピックアップ*/
+.slide-content{
+	text-align: center;
+	color: black;
+	font-size: 24px;
+	margin-top: 16px;
+}
+
+.pick_img{
+	margin:0 auto;
+	width: 100%;
+	height:400px;
+}
+.pick_img img{
+	margin:0 auto;
+	width: 100%;
+	height:100%;
+	object-fit: cover;
+}
+
+.slide-text{
+	font-size:20px;
+}
+
+
+	
+/*商品一覧*/
+	.c-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem 1.5rem;
+  text-align: center;
+}
+
+.c-grid__item img{
+    aspect-ratio:1/1;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.c-grid__item p{
+    font-size: 12px;
+}
+
+
+
+/*お知らせ*/
+	.news-list{
+  list-style: none outside;
+  margin: 0;
+  padding: 0;
+}
+.news-list .news__item a{
+  display: flex;
+  flex-wrap: wrap;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #CCC;
+  padding: 20px 20px;
+}
+.news-list .news__item:first-child a{
+  border-top: 1px solid #CCC;
+}
+.news-list .news__item .date{
+  margin: 0;
+  font-size: 16px;
+  color: #999;
+}
+.news-list .news__item .category{
+  margin: 0;
+  padding: 0 16px 0 0;
+}
+.news-list .news__item .category span{
+  background: #D8A9CC;
+  color: #FFF;
+  text-align: center;
+  display: inline-block;
+  padding: 5px 20px;
+  font-size: 12px;
+  line-height: 1;
+}
+.news-list .news__item .title{
+  margin: 0;
+  width: 100%;
+margin-top: 10px;
+}
+.news-list .news__item a:hover .title{
+  color: #777;
+}
+	
+	.page-footer{
+	background:#D8A9CC;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		padding: 40px 20px 20px 20px;
+		margin-top: 160px;
+		
+	}
+	.page-footer__nav {
+		text-align: right;
+		flex-direction: column;
+		display: flex;
+
+	}
+	.page-footer__nav a p {
+		font-size: 16px;
+		margin-top: 14px;
+		color: white;
+		text-decoration: underline;
+	}
+	
+	.swiper__top {
+		width: 100vw;
+		height: 95vh;
+		
+
+	}
+	.swiper-pagination-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  margin: 0 0 0 10px !important;
+  background: #888 !important;
+}
+
+.swiper-pagination-bullet:first-child {
+  margin: 0 !important;
+}
+
+
+
+/*お問い合わせ*/
+.top__sentence{
+	margin-bottom: 30px;
+	font-size: 14px;
+	line-height: 1.5; 
+}
+.sentence{
+	margin-top: 30px;
+	line-height: 2; 
+}
+.main__sentence{
+	font-size: 14px;
+	margin-top: 20px;
+	line-height: 2; 
+
+}
+.padding{
+	margin: 0 30px;
+}
+.list{
+	font-size: 14px;
+	list-style-type: decimal;
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	line-height: 2; 
+}
+.list_ul{
+	list-style: none;
+	font-size: 14px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	line-height: 2; 
+	
+}
+.time{
+	font-size: 12px;
+}
+.tenten{
+	font-size: 14px;
+	margin-left: 20px;
+	 line-height: 1.7; 
+}
+.list__none{
+	list-style: none;
+}
+
+
+
+
+/* ------------------------------------------------ */
+/*商品一覧（グリッド）*/
+/* ------------------------------------------------ */
+
+
+.c-grid__contents{
+	margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 1rem; /* c-gridと同じ gap を適用 */
+    text-align: center;
+}
+
+/* ★★★ 商品アイテムの幅を調整 ★★★ */
+.c-grid__item {
+	background-color: #AAAAAA;
+	
+}
+.add-to-cart-btn{
+	display: block;
+	width: 100%;
+	color: white;
+	border:solid 1px black;
+	background-color: #333333;
+	border-radius: 0px;
+	padding: 1px 1.25rem;
+	
+}
+.remove-from-cart-btn{}
+
+
+/* ------------------------------------------------ */
+/* ★ メニューコンテンツのレイアウト修正 ★ */
+/* ------------------------------------------------ */
+
+.menu-link .nav__img {
+    /* ヘッダーの .nav__img には影響を与えず、このリンク内のアイコンにのみ適用 */
+    margin-right: 8px; /* アイコンと文字の間にスペースを追加 */
+}
+
+/* 1. メニューコンテンツの親コンテナ (header__menu__links) */
+.global-nav.is-open .header__menu__links {
+    display: block; /* 前回からの変更なし */
+    
+    /* 配置を絶対配置でヘッダーの下から展開 (前回からの変更なし) */
+    position: absolute; 
+    top: 50px; 
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow-y: auto; 
+    
+    background-color: rgba(255, 255, 255, 0.95); 
+    z-index: 9998; 
+    padding: 0 20px; /* 全体の左右パディングをここで設定 */
+}
+
+/* 2. メニュー要素全体を縦方向に配置し、下部メニューを下揃えにするためのコンテナ */
+.menu-content-container {
+    display: flex;
+    flex-direction: column; /* 縦並びにする */
+    justify-content: space-between; /* 上部メニューと下部メニューを上下に分離 */
+    min-height: 100%; /* 親要素(header__menu__links)の高さ全体を使う */
+    padding: 20px 0; /* 上下のパディングを設定 */
+}
+
+/* 3. アコーディオンと左揃え通常メニューのグループ */
+.menu-left-group {
+    /* 上部グループは特に配置の調整はしない */
+}
+
+/* 4. 右揃えにするよう指示された下部メニューのグループ */
+.menu-right-group {
+	/* 下揃えにするために親要素 (menu-content-container) の justify-content: space-between が効く */
+	margin-top: 30px; /* 上のグループとの間にスペースを設ける */
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; /* リンクを左寄せにする */
+}
+
+/* 5. 通常メニューのリンクデザイン */
+.standard-links {
+	margin-top: 20px;
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+    /* リンクの幅を調整するため、align-itemsをstartに変更 (もし必要なら) */
+    align-items: flex-start;
+}
+
+/* ------------------------------------------------ */
+/* ★ メニューコンテンツのレイアウト修正 ★ */
+/* ------------------------------------------------ */
+
+/* 1. メニューコンテンツの親コンテナ (header__menu__links) */
+.global-nav.is-open .header__menu__links {
+    display: flex; /* Flexbox自体は維持 */
+    flex-direction: column; 
+    
+    /* 配置を絶対配置にして、ヘッダーの下から展開 */
+    position: absolute; 
+    top: 50px; 
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 50px); 
+    overflow-y: auto; /* ★ スクロール可能にする設定を追加 ★ */
+    
+    /* ★ 中央寄せの原因を削除・修正 ★ */
+    justify-content: flex-start; /* ★ 修正: 上部から配置する ★ */
+    align-items: stretch; /* ★ 修正: 中央寄せを解除し、幅いっぱいに広げる ★ */
+    gap: 0; 
+    
+    /* 白背景をここで設定 */
+    background-color: rgba(255, 255, 255, 0.95); 
+    z-index: 9998; 
+    padding: 0 20px;
+}
+
+/* 2. メニュー要素全体を縦方向に配置し、下部メニューを下揃えにするためのコンテナ */
+.menu-content-container {
+    display: flex;
+    flex-direction: column; /* 縦並びにする */
+    justify-content: flex-start; /* ★ 修正: 上部（開始位置）から配置する ★ */
+    min-height: 100%; 
+    padding: 20px 0;
+}
+
+/* 3. アコーディオンと左揃え通常メニューのグループ */
+.menu-left-group {
+    /* 上部グループは特に配置の調整はしない */
+}
+
+/* 4. 右揃えにするよう指示された下部メニューのグループ */
+.menu-right-group {
+    /* ... 既存のスタイル ... */
+    display: flex; /* これにより中のリンクが縦に並ぶ（flex-direction: column; のおかげ） */
+	font-size: 14px;
+    flex-direction: column; 
+    align-items: flex-start;
+}
+
+/* 5. 通常メニューのリンクデザイン */
+.standard-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.menu-link {
+	display: inline-flex;
+	align-items: center;
+	padding: 10px 0;
+	font-weight: normal;
+	color: #333;
+	text-align: left;
+	padding-left: 10px;
+}
+
+
+/* ★ アコーディオンのデザイン (前回からの継続) ★ */
+.header__menu__links {
+	display: none;
+	list-style: none;
+}
+
+.accordion-item {
+    border: 1px solid #ccc; /* 四角で囲う */
+    margin-bottom: 10px;
+    background-color: #fff;
+    width: 100%; 
+}
+
+/* アコーディオンのタイトル */
+.accordion-title {
+    display: block;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    list-style: none; 
+    position: relative;
+    text-align: left; 
+}
+.accordion-title::after {
+    content: "＋"; 
+    position: absolute;
+    right: 15px;
+    font-size: 14px;
+    transition: transform 0.3s;
+}
+.accordion-item[open] > .accordion-title::after {
+    content: "ー"; /* 開いたときは「▼」のままにする */
+}
+
+/* アコーディオンの中身（コンテンツ） */
+.accordion-content {
+	font-size: 14px;
+    padding: 10px 15px 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-top: 1px solid #eee;
+	color: #e8a6c2;
+}
+.accordion-content a {
+	display: inline-block;
+	padding: 5px 0;
+	color: #333;
+	text-align: left;
+    /* 親要素の幅いっぱいに広がるのを防ぐ */
+}
+
+
+/* ------------------------------------------------ */
+/* ★ 検索オーバーレイのスタイル ★ */
+/* ------------------------------------------------ */
+
+#search-overlay {
+    /* 初期状態：画面全体を覆い、非表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.98); /* 白っぽい半透明 */
+    z-index: 9999; /* ヘッダーやメニューと同じかそれ以上に設定 */
+    
+    /* 初期状態で非表示 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    
+    /* 検索フォームの配置設定 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* フォームを上部に配置 */
+    padding-top: 60px; /* ヘッダーの下から開始 */
+}
+
+/* is-active クラスが付与された時：表示状態に切り替える */
+#search-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 検索コンテンツの配置とデザイン */
+.search-content {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    position: relative;
+}
+
+/* フォームのデザイン */
+.search-form {
+    display: flex;
+    border: 1px solid #333;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    background: none;
+}
+
+.search-submit-btn {
+    background: none;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.search-submit-btn img {
+    height: 16px;
+}
+
+/* 閉じるボタン */
+.search-close-toggle {
+    position: absolute;
+    top: -40px; /* オーバーレイ内ではなく、ヘッダーの高さ付近に配置 */
+    right: 0px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10000;
+}
+
+.search-close-toggle img {
+    height: 18px; 
+}
+
+
+
+/* ------------------------------------------------ */
+/*バッグ*/
+/* ------------------------------------------------ */
+
+.bag_title .bag_img {
+    height: 20px !important; 
+	width: 20px !important;
+	vertical-align: middle;
+	margin-right: 5px;
+	
+
+}
+.bag_title{
+	margin-top: 15px;
+	font-size: 18px;
+	border-bottom: 1.3px solid black;
+	padding-bottom: 10px;
+	text-align: center;
+	font-weight: 400;
+	margin-bottom: 15px;
+}
+.bag-link {
+    display: block; /* <a> タグをブロック要素にする */
+    width: fit-content; /* 中身のサイズに幅を合わせる */
+    margin: 30px auto 0 auto; /* 左右マージンautoで中央寄せ */
+    text-decoration: none; /* 下線を削除 */
+    color: inherit;
+}
+
+.bag_btn{
+    display: flex; 
+    margin-top: 100px;
+	padding: 5px 80px;
+	background-color: white;
+	text-align: center;
+	justify-content: center;
+    /* 記号配置の基準点として追加 */
+    position: relative;
+    /* padding-right を増やして記号のスペースを確保 */
+	border:solid 1px black; 
+}
+
+/* ★★★ 疑似要素で「＞」を追加 ★★★ */
+.bag_btn::after {
+    content: ">"; /* 記号とスペース */
+    font-size: 12px;
+    position: absolute;
+    right: 10px; /* ボタンの右端からの距離 */
+    top: 50%;
+    transform: translateY(-55%); /* 垂直方向の中央揃え */
+    color: black;
+	
+}
+
+/* ★ 削除対象のブロック ★ */
+.header__btn{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center; /* これが原因で中央寄せになっている可能性大 */
+	align-items: center;
+	padding: 10px 30px;
+	background-color: #fff;
+	z-index: 9999;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* カート点数バッジのスタイル */
+
+/* 1. ラッパーを基準にする（バッジを重ねるため） */
+.nav__item.cart-icon-wrapper {
+    position: relative;
+}
+
+/* 2. バッジ本体のデザイン */
+.cart-count {
+    /* 絶対配置でアイコンの右上に重ねる */
+    position: absolute;
+    top: 0px; /* 位置を微調整 */
+    right: -10px; /* アイコンの右外側に配置 */
+    
+    /* デザイン */
+    background-color: #ff4d4d; /* 目立つ赤色 */
+    color: white;
+    font-size: 10px; /* 文字サイズを小さく */
+    font-weight: bold;
+    line-height: 14px; /* 縦幅と合わせる */
+    text-align: center;
+    
+    /* サイズと丸み */
+    width: 14px;
+    height: 14px;
+    border-radius: 50%; /* 完全な丸にする */
+    
+    /* Z-indexで他の要素の上に表示 */
+    z-index: 10;
+    
+    /* 0点の場合は非表示 */
+    display: none; 
+}
+
+
+/* ------------------------------------------------ */
+/*商品　内容*/
+/* ------------------------------------------------ */
+
+.product_contents{
+	font-size: 24px;
+	letter-spacing: 1px;
+	color: #e8a6c2;
+}
+
+
+
+
+
+/*}*/
