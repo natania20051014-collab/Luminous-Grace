@@ -316,6 +316,10 @@ section{
 	object-fit: cover;
 }
 
+.slide-title{
+	font-size: 18px;
+}
+
 .slide-text{
 	font-size:20px;
 }
@@ -323,11 +327,48 @@ section{
 
 	
 /*商品一覧*/
-	.c-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 2rem 1.5rem;
-  text-align: center;
+/* 既存の .c-grid をこの内容に置き換える */
+.c-grid {
+    display: grid;
+    /* モバイルファースト: 2列表示に設定 */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2rem 1.5rem; /* 縦横の隙間 */
+    text-align: center;
+    margin: 0 20px; /* 左右の余白をセクションと同じにする */
+}
+
+
+.c-grid__category {
+	font-size: 12px;
+    display: grid;
+    /* モバイルファースト: 2列表示に設定 */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem 1.5rem; /* 縦横の隙間 */
+    text-align: center;
+    margin: 0 20px; /* 左右の余白をセクションと同じにする */
+}
+
+.c-grid__category-item {
+    /* 必要に応じて以前のシンプルなレイアウトを適用 */
+    /* 例えば、テキストが中央に来るようにする */
+    text-align: center;
+    /* Flexboxの縦並び (display: flex; flex-direction: column;) は適用しない */
+    
+    /* 必要であれば以前のグリッドアイテムの幅や高さのスタイルを再定義 */
+}
+
+.c-grid__category-item img {
+    /* 画像の幅を親要素に合わせる */
+    max-width: 100%;
+    height: auto;
+}
+
+/* PC（600px以上）で3列表示に変更 */
+@media (min-width: 600px) {
+    .c-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem 2rem;
+    }
 }
 
 .c-grid__item img{
@@ -338,6 +379,95 @@ section{
 }
 .c-grid__item p{
     font-size: 12px;
+}
+
+
+/* ============================================== */
+/* ★ 商品タイルレイアウトのスタイル ★ */
+/* ============================================== */
+
+/* 商品アイテム全体のリンク */
+.product-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+	
+	flex-grow: 1; 
+}
+
+/* 画像コンテナ */
+.product-image-container {
+    width: 100%;
+    /* 画像を正方形（1:1）にするためにpadding-bottomを使用 */
+    padding-bottom: 100%; 
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    border: 1px solid #f0f0f0; /* 軽い枠線 */
+	
+}
+
+/* 画像そのもの */
+.product-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像が引き伸ばされず、コンテナに合わせて表示される */
+}
+
+/* 商品名 */
+.product-name {
+    font-size: 16px !important;
+    font-weight: normal;
+    margin-bottom: 5px;
+    line-height: 1.4;
+	
+}
+
+/* 価格 */
+.product-price {
+    font-size: 20px !important;
+    font-weight: normal;
+	font-family:　YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "serif";
+	margin-top: 15px;
+    margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.tax-info {
+    font-size: 12px;
+    font-weight: normal;
+    color: black;
+}
+
+/* バッグに入れるボタン (既存の .add-to-cart-btn の上書き) */
+.add-to-cart-btn {
+	flex-shrink: 0;
+	
+    display: block;
+    width: 100%;
+    color: white;
+    border: none; /* 枠線を削除 */
+    border-radius: 5px; /* 角丸を適用 */
+    padding: 10px 1.25rem; /* 上下のpaddingを調整して高さを出す */
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background-color:;
+}
+
+.cart-control-buttons {
+    /* ★修正: 上マージンを自動設定し、要素を底に押し下げる★ */
+    margin-top: auto; 
+    
+    /* Flexbox内でボタンが伸び縮みしないように設定 */
+    flex-shrink: 0;
 }
 
 
@@ -387,7 +517,7 @@ margin-top: 10px;
 }
 	
 	.page-footer{
-	background:#D8A9CC;
+	background:#e3aecb;
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-end;
@@ -464,11 +594,12 @@ margin-top: 10px;
 }
 .time{
 	font-size: 12px;
+	color: #929292;
 }
 .tenten{
 	font-size: 14px;
 	margin-left: 20px;
-	 line-height: 1.7; 
+	line-height: 1.7;
 }
 .list__none{
 	list-style: none;
@@ -492,7 +623,11 @@ margin-top: 10px;
 
 /* ★★★ 商品アイテムの幅を調整 ★★★ */
 .c-grid__item {
-	background-color: #AAAAAA;
+	    display: flex;
+    flex-direction: column; 
+	
+	background-color: white;;
+	text-align: left;
 	
 }
 .add-to-cart-btn{
@@ -502,6 +637,7 @@ margin-top: 10px;
 	border:solid 1px black;
 	background-color: #333333;
 	border-radius: 0px;
+	align-items:flex-end
 	padding: 1px 1.25rem;
 	
 }
@@ -886,6 +1022,145 @@ margin-top: 10px;
 	font-size: 24px;
 	letter-spacing: 1px;
 	color: #e8a6c2;
+}
+
+
+/* ============================================== */
+/* ★ よくあるご質問 (FAQ) ページのスタイル ★ */
+/* ============================================== */
+
+.faq-section {
+    padding-bottom: 50px;
+}
+
+/* 質問カテゴリのタイトル */
+.faq-category-title {
+    font-size: 18px;
+    font-weight: bold;
+    color:black; /* ブランドカラーを使用 */
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.faq-group {
+    margin-bottom: 30px;
+}
+
+/* アコーディオン要素全体 */
+.faq-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden; /* 角丸対応のため */
+}
+
+/* 質問部分 (summary) */
+.faq-question {
+    display: block;
+    padding: 15px 40px 15px 15px; /* 右側にアイコンのスペースを確保 */
+    font-size: 16px;
+    cursor: pointer;
+    list-style: none; /* デフォルトの矢印を非表示 */
+    position: relative;
+    font-weight: 500;
+    color: #333;
+}
+
+/* 質問の右側に開閉アイコン（＋/ー）を表示 */
+.faq-question::after {
+    content: "＋"; 
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #e8a6c2;
+    transition: transform 0.3s;
+}
+
+/* 開いているとき */
+.faq-item[open] > .faq-question::after {
+    content: "ー";
+}
+
+/* 回答部分 */
+.faq-answer {
+    padding: 15px;
+    padding-top: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    border-top: 1px solid #eee;
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
+/* お問い合わせへの誘導セクション */
+.contact-guide {
+    text-align: center;
+    margin-top: 60px;
+    padding: 50px 20px;
+    background-color:#F9F9F9;
+    border-top: 1px solid #eee;
+}
+
+.contact-guide p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.contact-btn {
+    /* 既存の .btn スタイルを利用しつつ、少し大きくする */
+    display: inline-block;
+    padding: 8px 30px;
+    font-size: 16px;
+    background-color: #e3aecb;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.contact-btn:hover {
+    background-color:;
+}
+
+
+/* ============================================== */
+/* ★ 新しいページ見出しのスタイル (GIFT / ギフト) ★ */
+/* ============================================== */
+
+.page-header-title {
+    text-align: center;
+    margin-top: 80px; /* mainのpadding-top 50px + 適切な余白 */
+    margin-bottom: 50px;
+}
+
+/* 小さい文字 (GIFT / BRAND STORY) */
+.page-header-title .heading__ja {
+	color: black;
+    font-family: "Arial";
+    font-size: 14px !important; /* 小さめに */
+    letter-spacing: .1em;
+    margin-bottom: 5px; /* 大きい文字との間隔 */
+    font-weight: 500;
+}
+
+/* 大きい文字 (ギフト / ブランドストーリー) */
+.page-header-title .heading__en {
+    font-family: "Hiragino Kaku Gothic ProN";
+    font-size: 36px !important;/* 大きめに */
+    letter-spacing: .1em;
+    color: #333;
+    margin-top: 0;
+    font-weight: 600;
 }
 
 

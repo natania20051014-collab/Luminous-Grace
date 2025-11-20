@@ -7,18 +7,18 @@
 // 要素が存在する場合のみSwiperを初期化し、エラーによるスクリプト停止を防ぐ
 const swiperTopElement = document.querySelector(".swiper__top");
 if (swiperTopElement) {
-    const swiper__top = new Swiper(swiperTopElement, {
-         speed: 750,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-        },
-        loop: true,
-        loopAdditionalSlides: 2,
-        pagination: {
-            el: ".swiper-pagination"
-        },
-    });
+    const swiper__top = new Swiper(swiperTopElement, {
+         speed: 750,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        loop: true,
+        loopAdditionalSlides: 2,
+        pagination: {
+            el: ".swiper-pagination"
+        },
+    });
 }
 
 const mySwiperElement = document.querySelector('.card01 .swiper');
