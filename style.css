@@ -137,6 +137,7 @@
 a{
 	display:inline-block;
 	text-decoration: none;
+    color: #000000; 
 }
 p{
 	font-feature-settings: "palt";
@@ -361,7 +362,19 @@ section{
     /* 画像の幅を親要素に合わせる */
     max-width: 100%;
     height: auto;
+	 /* 不透明度の変化を0.3秒かけて滑らかに行う */
+    transition: opacity 0.3s ease; 
+    
+    /* 初期状態の不透明度は通常1 (100%) */
+    opacity: 1; 
 }
+
+/* ホバー時の設定 */
+.c-grid__category-item img:hover {
+    /* カーソルを合わせたときに不透明度を0.8 (80%) に変更 */
+    opacity: 0.7; 
+}
+
 
 /* PC（600px以上）で3列表示に変更 */
 @media (min-width: 600px) {
@@ -422,9 +435,14 @@ section{
 .product-name {
     font-size: 16px !important;
     font-weight: normal;
+	margin-left: 5px;
     margin-bottom: 5px;
     line-height: 1.4;
 	
+}
+.product-category{
+	margin-left: 5px;
+	font-size: 14px;
 }
 
 /* 価格 */
@@ -433,7 +451,7 @@ section{
     font-weight: normal;
 	font-family:　YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "serif";
 	margin-top: 15px;
-    margin-bottom: 10px;
+	margin-left: 5px;
 	margin-right: 10px;
 }
 
