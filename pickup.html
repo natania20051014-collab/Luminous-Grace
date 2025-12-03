@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Luminous Grace</title>
+	<meta name="viewport" content="width=device, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link
+rel="stylesheet"
+  href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+/>
+</head>
+
+<body class="page-rule">
+	<nav class="global-nav" id="global-nav">
+    <ul class="header__nav__left">
+        <li class="nav__item">
+            <button class="menu-toggle" aria-expanded="false" aria-controls="global-nav">
+                <img src="images/menyu-.webp" alt="メニューを開く" class="nav__img menyu">
+            </button>
+        </li>
+        <li class="nav__item">
+            <button class="search-toggle" aria-expanded="false" aria-controls="global-nav">
+                <img src="images/kensaku.webp" alt="メニューを開く" class="nav__img menyu">
+            </button>
+        </li>
+    </ul>
+    
+    <div class="header__logo">
+        <a href="index.html"><img alt="" class="logo" src="images/logo.webp"></a>
+    </div>
+    
+		    <ul class="header__nav__right">
+        <li class="nav__item">
+            <a href="account.html">
+                <img src="images/akaunto.webp" alt="" class="nav__img">
+            </a>
+        </li>
+       <li class="nav__item cart-icon-wrapper">
+    <a href="bag.html">
+        <img src="images/kaban.webp" alt="" class="nav__img">
+        <span class="cart-count">0</span>
+    </a>
+</li>
+    </ul>
+		
+	<div class="header__menu__links">
+        
+        <div class="menu-content-container">
+            
+			
+            <div class="menu-left-group">
+                <details class="accordion-item">
+                    <summary class="accordion-title">商品一覧</summary>
+                    <div class="accordion-content">
+                        <a href="lips.html">-　リップ </a>
+                        <a href="cheek.html">-　チーク</a>
+                        <a href="eyeshadow.html">-　アイシャドウ</a>
+                    </div>
+                </details>
+                <details class="accordion-item">
+                    <summary class="accordion-title">ピックアップ</summary>
+                    <div class="accordion-content">
+                        <a href="pickup.html">-　おすすめ商品</a>
+                    </div>
+                </details>
+                <details class="accordion-item">
+                    <summary class="accordion-title">ギフト</summary>
+                    <div class="accordion-content">
+                        <a href="gift.html">-　すべてのアイテムを見る</a>
+						
+                    </div>
+                </details>
+                <details class="accordion-item">
+                    <summary class="accordion-title">店舗検索</summary>
+                    <div class="accordion-content">
+                        <a href="#">-　近くの店舗</a>
+                    </div>
+                </details>
+                <details class="accordion-item">
+                    <summary class="accordion-title">ブランドストーリー</summary>
+                    <div class="accordion-content">
+                        <a href="blandstory.html">-　Luminous Graceについて</a>
+                    </div>
+                </details>
+                
+                <div class="standard-links">
+                    <a href="account.html" class="menu-link"><img src="images/akaunto.webp" alt="" class="nav__img">ログイン</a>
+                    <a href="bag.html" class="menu-link"><img src="images/kaban.webp" alt="" class="nav__img">買い物リスト</a>
+                    <a href="contact.html" class="menu-link">お問い合わせ</a>
+                    <a href="inquiry.html" class="menu-link">よくあるご質問</a>
+                </div>
+            </div>
+            
+            <div class="menu-right-group">
+                <a href="privacy.html" class="menu-link">プライバシーポリシー</a>
+                <a href="rule.html" class="menu-link">利用規約</a>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</nav>
+	
+		<div id="search-overlay">
+    <div class="search-content">
+        <button class="search-close-toggle">
+            <img src="images/close.webp" alt="閉じる" class="nav__img">
+        </button>
+
+        <form action="https://www.google.com/search" method="get" class="search-form">
+    <input type="hidden" name="sitesearch" value="https://natania20051014-collab.github.io/Luminous-Grace/index.html">
+    <input type="search" name="q" placeholder="キーワードを入力してください" class="search-input">
+    <button type="submit" class="search-submit-btn">
+        <img src="images/kensaku.webp" alt="検索" class="nav__img">
+    </button>
+</form>
+
+        <div class="search-suggestions">
+            <h3>人気の検索キーワード</h3>
+            <ul>
+                <li class="search_contents"><a href="lips.html">リップ</a></li>
+                <li class="search_contents"><a href="cheek.html">チーク</a></li>
+                <li class="search_contents"><a href="eyeshadow.html">アイシャドウ</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+	
+	<main>
+	    <section class="page-header-title">
+        <h1 class="heading__ja">ピックアップ</h1>
+        <h2 class="heading__en gift__h2">PICK UP</h2>
+    </section>
+		
+		
+		<section class="gift-products l-section">
+			<div class="c-grid product-list-grid">
+				
+				<div class="c-grid__item product-tile-item">
+					<a href="lips.html" class="product-link">
+						<div class="product-image-container">
+							<img src="images/pick_01.webp" alt="プリズム・ジュエル・リップグロス"> 
+						</div>
+						<p class="product-name">ルミナス・ドリーム・ジェム</p>
+						<p class="product-category">リップスティック</p>
+						<p class="product-price">1,650円<span class="tax-info">(税込)</span></p>
+					</a>
+					
+					<div class="cart-control-buttons">
+						<button class="add-to-cart-btn" data-product-id="pick-01">バッグに追加</button>
+					</div>
+				</div>
+
+				<div class="c-grid__item product-tile-item">
+					<a href="cheek.html" class="product-link">
+						<div class="product-image-container">
+							<img src="images/pick_02.webp" alt="エアリー チークパレット 02">
+						</div>
+						<p class="product-name">ルミナス・エアーマスカラ </p>
+						<p class="product-category">マスカラ</p>
+						<p class="product-price">1,540円<span class="tax-info">(税込)</span></p>
+					</a>
+					
+					<div class="cart-control-buttons">
+						<button class="add-to-cart-btn" data-product-id="pick-02">バッグに追加</button>
+					</div>
+				</div>
+				
+				<div class="c-grid__item product-tile-item">
+					<a href="eyeshadow.html" class="product-link">
+						<div class="product-image-container">
+							<img src="images/pick_03.webp" alt="シルキー アイシャドウ 03">
+						</div>
+						<p class="product-name">プリズムジュエル・リップグロス</p>
+						<p class="product-category">リップグロス</p>
+						<p class="product-price">1,650円<span class="tax-info">(税込)</span></p>
+					</a>
+					
+			  		  <div class="cart-control-buttons">
+						<button class="add-to-cart-btn" data-product-id="pick-03">バッグに追加</button>
+					</div>
+				</div>
+
+				</div>
+		</section>
+		
+		
+	</main>
+
+	
+		<footer class="page-footer">
+    <h1 class="footer__logo">
+        <a href="index.html"><img alt="Luminous Grace" class="logo" src="images/logo.webp"></a>
+    </h1>
+
+    <div class="page-footer__nav-group">
+        
+        <div class="footer__column">
+            <h3>商品を見る</h3>
+            <ul>
+                <li><a href="pickup.html">ピックアップ商品</a></li>
+                <li><a href="gift.html">ギフト</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer__column">
+            <h3>ブランド情報</h3>
+            <ul>
+                <li><a href="blandstory.html">Luminous Graceについて</a></li>
+                <li><a href="#">店舗検索</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer__column">
+            <h3>サポート</h3>
+            <ul>
+                <li><a href="inquiry.html">よくあるご質問</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+        </div>
+		
+		<div class="footer__column">
+            <h3>アカウント情報</h3>
+            <ul>
+                <li><a href="account.html">アカウント / ログイン</a></li>
+                <li><a href="bag.html">買い物リスト</a></li>
+            </ul>
+        </div>
+		
+		
+
+    </div>
+
+    <div class="page-footer__policies">
+        <a href="sitemap.html">サイトマップ</a>
+		<span>|</span>
+        <a href="rule.html">利用規約</a>
+        <span>|</span>
+        <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+
+    <p class="footer__copyright">© 2025 Luminous Grace. All Rights Reserved.</p>
+</footer>
+
+		<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+    </body>
+</html>
